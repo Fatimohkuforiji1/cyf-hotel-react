@@ -1,5 +1,5 @@
 import React from "react";
-
+import Moment from "moment";
 
 const Heading = ()=>{
       return(
@@ -66,57 +66,34 @@ const SearchResults = (prop) =>{
             {BookingKeys.map(function(bookingKey) {
               return <th scope="col">{bookingKey}</th>;
             })}
+            <th> number of nights </th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            {Bookings.map(function(booking) {
-              console.log(booking);
-              return (
-                <th scope="row">
-                  {booking["firstName"]}
-              
-                </th>
-              );
-            })}
-            {/* {booking["firstName"]} */}
-            <td>Mr.</td>
-            <td>Joseph</td>
-            <td>Jolly</td>
-            <td>JJ@yahoo.com</td>
-            <td>Room 1</td>
-            <td>1/3/2021</td>
-            <td>/3/2021</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Mrs</td>
-            <td>Linda</td>
-            <td>Chris</td>
-            <td>chris@yahoo.com</td>
-            <td>Room 2</td>
-            <td>2/3/2021</td>
-            <td>4/3/2021</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Ms</td>
-            <td>Josephine</td>
-            <td>Jolius</td>
-            <td>JJ@yahoo.com</td>
-            <td>Room 3</td>
-            <td>3/3/2021</td>
-            <td>5/3/2021</td>
-          </tr>
+          {Bookings.map((booking, index) => {
+            return (
+              <tr key={index}>
+                {BookingKeys.map((bookingKey) => (
+                  <td key={bookingKey}>{booking[bookingKey]}</td>
+                ))}
+
+                <td>
+                  {Moment.duration(
+                    Moment(booking["checkOutDate"]).diff(
+                      Moment(booking["checkInDate"])
+                    )
+                  ).asDays()}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
   );
-
-} 
-
-
+  };
+  
 
 
 export default {Heading, TouristInfoCards, Footer, SearchResults};
