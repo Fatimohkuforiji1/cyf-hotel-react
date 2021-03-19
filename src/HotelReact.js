@@ -73,7 +73,12 @@ const SearchResults = (prop) =>{
           <tr>
             {Bookings.map(function(booking) {
               console.log(booking);
-              return <th scope="row">{booking["firstName"]}</th>;
+              return (
+                <th scope="row">
+                  {booking["firstName"]}
+              
+                </th>
+              );
             })}
             {/* {booking["firstName"]} */}
             <td>Mr.</td>
