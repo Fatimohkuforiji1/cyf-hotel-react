@@ -1,7 +1,8 @@
 import React from "react";
-
 import allFiles from "./HotelReact.js"
 import Bookings from "./Bookings";
+import Restaurant from "./Restaurant";
+
 import "./App.css";
 
 const App = () => {
@@ -11,7 +12,8 @@ const App = () => {
       <allFiles.Heading />
       <allFiles.TouristInfoCards />
       <Bookings />
-      
+      <Restaurant />
+
       <allFiles.Footer
         footer={[
           "123 Fake Street, London, E1 4UD",

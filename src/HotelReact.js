@@ -1,5 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import Moment from "moment";
+import allFiles from "./HotelReact.js";
+import Restaurant from "./Restaurant";
 
 const Heading = ()=>{
       return(
@@ -60,9 +62,9 @@ const SearchResults = (prop) =>{
   console.log(BookingKeys)
   return (
     <div>
-      <table class="table table-striped">
-        <thead class="thead-dark">
-          <tr>
+      <table className="table table-striped">
+        <thead className="thead-dark">
+          <tr >
             {BookingKeys.map(function(bookingKey) {
               return <th scope="col">{bookingKey}</th>;
             })}
@@ -94,6 +96,25 @@ const SearchResults = (prop) =>{
   );
   };
   
+  const RestaurantButton = (props) =>{
 
+   return <button onClick={props.handleOrder} className="btn btn-primary">Add</button>;
+  }
 
-export default {Heading, TouristInfoCards, Footer, SearchResults};
+  const Order = (props) => {
+     //const orderType = "Pizzas";
+    const [order, setOrder] = useState(0);
+    const orderOne = () => {
+      setOrder(order + 1);
+    };
+      return(
+      <div>
+        <li>
+         {props.orderType}: {order} <allFiles.RestaurantButton handleOrder={orderOne} />
+        </li>
+
+      </div>
+      )
+  }
+
+export default {Heading, TouristInfoCards, Footer, SearchResults, RestaurantButton, Order};
