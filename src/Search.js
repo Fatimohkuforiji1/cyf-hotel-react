@@ -1,9 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 
 //import { SearchButton } from "./hotelReact";
 
 
-const Search = () => {
+const Search = (props) => {
+const [searchInput, setSearchInput] = useState("") 
+const handleSearchInput = (event) =>{
+  console.log(event.target.value);
+   setSearchInput(event.target.value);
+}
+const handleOnSubmit = (event) =>{
+  event.preventDefault();
+  props.search(searchInput)
+}
+
   return (
     <div className="search">
       <div className="page-header">
@@ -11,17 +21,19 @@ const Search = () => {
       </div>
       <div className="row search-wrapper">
         <div className="col">
-          <form className="form-group search-box">
+          <form onSubmit ={handleOnSubmit} className="form-group search-box">
             <label htmlFor="customerName">Customer name</label>
             <div className="search-row">
               <input
+                onChange = {handleSearchInput}
                 type="text"
                 id="customerName"
                 className="form-control"
                 placeholder="Customer name"
+                value={searchInput}
               />
-              <SearchButton/>
-            {/* <button className="btn btn-primary">Search</button> */}
+              <SearchButton />
+              {/* <button className="btn btn-primary">Search</button> */}
             </div>
           </form>
         </div>
