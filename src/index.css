@@ -24,3 +24,14 @@ body {
 .search-row input {
   margin-right: 10px;
 }
+
+h2{
+  text-align: center;
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
